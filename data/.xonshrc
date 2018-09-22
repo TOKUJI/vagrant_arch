@@ -1,0 +1,3 @@
+$XONSH_COLOR_STYLE='monokai'
+$PROMPT = '{NO_COLOR}{CYAN}{user}{INTENSE_BLUE}@{CYAN}{hostname}{WHITE}:{INTENSE_PURPLE}{cwd}\n{GREEN}>{WHITE} '
+$RPROMPT='{gitstatus}'

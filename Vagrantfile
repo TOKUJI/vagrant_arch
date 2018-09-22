@@ -90,15 +90,17 @@ Vagrant.configure("2") do |config|
     modprobe -a vboxguest vboxsf vboxvideo
 
     pacman -S --noconfirm python xonsh tilda
-    cp /host_data/.xonshrc /home/vagrant/
-    cp /host_data/rc.lua /home/vagrant/.config/awesome/
+    ln -s /host_data/.xonshrc /home/vagrant/
+    ln -s /host_data/rc.lua /home/vagrant/.config/awesome/
     stty erase ^H
 
-    cp /host_data/MyricaM.TTC /usr/share/fonts/
+    ln -s /host_data/MyricaM.TTC /usr/share/fonts/
     sed -i "s/#ja/ja/g" /etc/locale.gen
     locale-gen
 
     pacman -S fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
     fcitx-autostart
+
+    pacman -S pulseaudio
   SHELL
 end
