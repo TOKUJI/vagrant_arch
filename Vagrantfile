@@ -101,6 +101,7 @@ Vagrant.configure("2") do |config|
     pacman -S fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
     fcitx-autostart
 
-    pacman -S pulseaudio
+    pacman -S --noconfirm alsa-utils pulseaudio
+    ln -s /host_data/.asoundrc /home/vagrant/
   SHELL
 end
