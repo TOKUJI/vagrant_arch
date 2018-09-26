@@ -3,9 +3,10 @@ $PROMPT = '{NO_COLOR}{CYAN}{user}{INTENSE_BLUE}@{CYAN}{hostname}{WHITE}:{INTENSE
 $RPROMPT='{gitstatus}'
 
 # for Node.js
-$PATH.insert(0,  '~/.node_modules/bin')
+import os.path
+$PATH.insert(0,  os.path.join($HOME, '.node_modules/bin'))
 $npm_config_prefix='~/.node_modules'
-$N_PREFIX='~/.node_modules'
+$N_PREFIX=os.path.join($HOME, '.node_modules')
 
 aliases["la"] = "ls -la"
 aliases["ll"] = "ls -l"
