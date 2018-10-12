@@ -78,15 +78,6 @@ Vagrant.configure("2") do |config|
     pacman -S --noconfirm wget curl emacs git openssl
 
     pacman -S --noconfirm --needed base-devel git
-    su vagrant
-    echo "my name is"
-    whoami
-    cd ~
-    git clone https://aur.archlinux.org/pikaur.git
-    cd pikaur
-    makepkg -fsri
-    pikaur -S ttf-myrica --noconfirm
-    su
 
     cd /root
     git clone https://github.com/TOKUJI/vagrant_arch.git
@@ -98,7 +89,6 @@ Vagrant.configure("2") do |config|
     pacman -R --noconfirm virtualbox-guest-utils-nox
     pacman -S --noconfirm virtualbox-guest-utils
     modprobe -a vboxguest vboxsf vboxvideo
-    VBoxClient-all
 
     pacman -S --noconfirm python xonsh tilda
     stty erase ^H
@@ -125,3 +115,12 @@ end
     # fcitx-autostart
     # VBoxClient-all
 
+    # su vagrant
+    # echo "my name is"
+    # whoami
+    # cd ~
+    # git clone https://aur.archlinux.org/pikaur.git
+    # cd pikaur
+    # makepkg -fsri
+    # pikaur -S ttf-myrica --noconfirm
+    # su
