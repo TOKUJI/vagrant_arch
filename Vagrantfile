@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
   
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./data", "/host_data"
+  # config.vm.synced_folder "./data", "/root/vagrant_arch"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -71,37 +71,57 @@ Vagrant.configure("2") do |config|
     timedatectl set-ntp true
     loadkeys jp106
     setfont Lat2-Terminus16
-    cp /etc/pacman.conf /host_data/pacman.conf.org
-    cp /host_data/pacman.conf /etc/
+    sed -i "s/^LANG.*/LANG=ja_JP.UTF-8/" /etc/locale.conf
+    sed -i "s/^SigLevel.*$/SigLevel = Optional TrustAll/" /etc/pacman.conf 
     pacman-key --init
-    pacman -g
-    pacman -Syy
-    pacman -Su
-    pacman -S --noconfirm wget curl emacs
+    pacman -Syu
+    pacman -S --noconfirm wget curl emacs git openssl
 
-    pacman -S --noconfirm xorg-server xorg-xinit xorg-xclock xterm xorg-xdm xdm-archlinux awesome
-    cp /host_data/00-keyboard.conf /etc/X11/xorg.conf.d/
+    pacman -S --noconfirm --needed base-devel git
+    su vagrant
+    echo "my name is"
+    whoami
+    cd ~
+    git clone https://aur.archlinux.org/pikaur.git
+    cd pikaur
+    makepkg -fsri
+    pikaur -S ttf-myrica --noconfirm
+    su
+
+    cd /root
+    git clone https://github.com/TOKUJI/vagrant_arch.git
+
+    pacman -S --noconfirm xorg-server xorg-xinit xorg-xclock xterm xorg-xdm xdm-archlinux awesome otf-ipafont
+    cp /root/vagrant_arch/data/00-keyboard.conf /etc/X11/xorg.conf.d/
     systemctl enable xdm-archlinux.service
-    cp /host_data/.xsession /home/vagrant/
-    chown vagrant /home/vagrant/.xsession
-    chmod 700 /home/vagrant/.xsession
+
     pacman -R --noconfirm virtualbox-guest-utils-nox
     pacman -S --noconfirm virtualbox-guest-utils
     modprobe -a vboxguest vboxsf vboxvideo
+    VBoxClient-all
 
     pacman -S --noconfirm python xonsh tilda
-    ln -s /host_data/.xonshrc /home/vagrant/
-    ln -s /host_data/rc.lua /home/vagrant/.config/awesome/
     stty erase ^H
 
-    ln -s /host_data/MyricaM.TTC /usr/share/fonts/
     sed -i "s/#ja/ja/g" /etc/locale.gen
     locale-gen
 
     pacman -S fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
-    fcitx-autostart
 
     pacman -S --noconfirm alsa-utils pulseaudio
-    ln -s /host_data/.asoundrc /home/vagrant/
+
+    cp /root/vagrant_arch/data/.xsession /home/vagrant/
+    chmod 700 /home/vagrant/.xsession
+    cp /root/vagrant_arch/data/.xonshrc /home/vagrant/
+    cp /root/vagrant_arch/data/.asoundrc /home/vagrant/
+    mkdir -p /home/vagrant/.config/awesome
+    cp /root/vagrant_arch/data/rc.lua /home/vagrant/.config/awesome/
+    chown -R vagrant /home/vagrant/
+    chgrp -R vagrant /home/vagrant/
+
   SHELL
 end
+    # pikaur -S ttf-myrica
+    # fcitx-autostart
+    # VBoxClient-all
+
