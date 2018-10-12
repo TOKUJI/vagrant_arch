@@ -96,7 +96,7 @@ Vagrant.configure("2") do |config|
     sed -i "s/#ja/ja/g" /etc/locale.gen
     locale-gen
 
-    pacman -S fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
+    pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
 
     pacman -S --noconfirm alsa-utils pulseaudio
 
