@@ -106,6 +106,7 @@ Vagrant.configure("2") do |config|
     cp /root/vagrant_arch/data/.asoundrc /home/vagrant/
     mkdir -p /home/vagrant/.config/awesome
     cp /root/vagrant_arch/data/rc.lua /home/vagrant/.config/awesome/
+    cp /root/vagrant_arch/data/after.provisioning.sh /home/vagrant/
     chown -R vagrant /home/vagrant/
     chgrp -R vagrant /home/vagrant/
 
