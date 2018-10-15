@@ -82,7 +82,7 @@ Vagrant.configure("2") do |config|
     cd /root
     git clone https://github.com/TOKUJI/vagrant_arch.git
 
-    pacman -S --noconfirm xorg-server xorg-xinit xorg-xclock xterm xorg-xdm xdm-archlinux awesome otf-ipafont
+    pacman -S --noconfirm xorg-server xorg-xinit xorg-xclock xterm xorg-xprop xorg-xdm xdm-archlinux awesome otf-ipafont
     cp /root/vagrant_arch/data/00-keyboard.conf /etc/X11/xorg.conf.d/
     systemctl enable xdm-archlinux.service
 
@@ -98,7 +98,7 @@ Vagrant.configure("2") do |config|
 
     pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
 
-    pacman -S --noconfirm alsa-utils pulseaudio
+    pacman -S --noconfirm alsa-utils pulseaudio pavucontrol
 
     cp /root/vagrant_arch/data/.xsession /home/vagrant/
     chmod 700 /home/vagrant/.xsession
