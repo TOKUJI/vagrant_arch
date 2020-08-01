@@ -1,10 +1,15 @@
 #! /bin/sh +x
 
-# Font install
+# Install a package manger
 git clone https://aur.archlinux.org/pikaur.git
 cd pikaur
 makepkg -fsri --noconfirm
+cd ..
+rm -fr pikaur
+
+# Install a font set.
 pikaur --noconfirm -S ttf-myrica --noconfirm
+
 
 # Git configuration
 git config --global user.email "14055040+TOKUJI@users.noreply.github.com"

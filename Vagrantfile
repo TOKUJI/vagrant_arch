@@ -98,7 +98,7 @@ Vagrant.configure("2") do |config|
 
     pacman -S --noconfirm fcitx-im fcitx-configtool fcitx-mozc fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
 
-    pacman -S --noconfirm alsa-utils pulseaudio pavucontrol
+    pacman -S --noconfirm pulseaudio pavucontrol pulseaudio-alsa
 
     cp /root/vagrant_arch/data/.xsession /home/vagrant/
     chmod 700 /home/vagrant/.xsession
