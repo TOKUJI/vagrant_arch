@@ -11,4 +11,5 @@ git config --global user.email "14055040+TOKUJI@users.noreply.github.com"
 git config --global user.name "TOKUJI"
 
 # IME support
-
+# Set fcitx to start automatically
+cp /etc/xdg/autostart/fcitx-autostart.desktop ./.config/autostart/
